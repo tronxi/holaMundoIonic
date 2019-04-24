@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>prueba</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup">
+    <ion-list>
+        <ion-item>
+          <ion-label for="name">Name</ion-label>
+          <ion-input name="name"
+                 formControlName="name"
+                     type="text"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label for="email">E-mail</ion-label>
+        <ion-input name="email"
+               formControlName="email"
+                   type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label for="password">Password</ion-label>
+        <ion-input name="password"
+               formControlName="password"
+                   type="password"></ion-input>
+      </ion-item>
+      <button (click)="register()"
+              [disabled]="formGroup.invalid">Register me!</button>
+    </ion-list>
+  </form>
+  <span>{{ getError('name')}}</span>
+  <span>{{ getError('email')}}</span>
+  <span>{{ getError('password')}}</span>
+
+</ion-content>
