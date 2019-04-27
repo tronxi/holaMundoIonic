@@ -1,5 +1,7 @@
 {
   "name": "holaMundoIonic",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

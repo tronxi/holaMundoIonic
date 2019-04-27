@@ -29,7 +29,12 @@
                            type="password"></ion-input>
             </ion-item>
             <ion-item>
-                <div class="g-recaptcha" data-callback="getResponseCaptcha" data-sitekey="6LcbgaAUAAAAAAv4IUIFB3SQG1UozeNu5OoJEDDR"></div>
+                <ngx-recaptcha2 #captchaElem
+                                siteKey="6LcbgaAUAAAAAAv4IUIFB3SQG1UozeNu5OoJEDDR"
+                                (success)="handleSuccess($event)"
+                                [useGlobalDomain]="false"
+                                formControlName="recaptcha">
+                </ngx-recaptcha2>
             </ion-item>
             <button (click)="register()"
                     [disabled]="formGroup.invalid">Register me!</button>

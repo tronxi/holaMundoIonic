@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PruebaPage } from './prueba.page';
+import {NgxCaptchaModule} from 'ngx-captcha';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxCaptchaModule
     ],
   declarations: [PruebaPage]
 })

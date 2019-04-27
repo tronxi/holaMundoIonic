@@ -12,6 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+      NgxCaptchaModule
   ],
   providers: [
     StatusBar,

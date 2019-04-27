@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ServicioPruebaService} from '../services/servicio-prueba.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ReCaptcha2Component} from 'ngx-captcha';
 
 @Component({
   selector: 'app-prueba',
@@ -8,7 +9,10 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
   styleUrls: ['./prueba.page.scss'],
 })
 export class PruebaPage implements OnInit {
+
+  @ViewChild('captchaElem') captchaElem: ReCaptcha2Component;
   texto = null;
+  response;
   public formGroup: FormGroup;
 
   constructor(private conex: ServicioPruebaService,
@@ -24,7 +28,15 @@ export class PruebaPage implements OnInit {
   }
   ngOnInit() {
     this.buildForm();
-    window['getResponseCaptcha'] = this.getResponseCaptcha.bind(this);
+  }
+  handleSuccess(event) {
+    console.log(event);
+    this.conex.captchaValidation(event.toString()).subscribe(response => {
+      console.log(response);
+      this.response = response;
+      console.log(this.response.success);
+
+    });
   }
   public register() {
     const user = this.formGroup.value;
@@ -39,7 +51,8 @@ export class PruebaPage implements OnInit {
       password: ['', [
         Validators.required, Validators.minLength(8),
           this.validatePassword
-      ]]
+      ]],
+      recaptcha: ['', Validators.required]
     });
   }
   public getError(controlName: string): string {
@@ -50,11 +63,9 @@ export class PruebaPage implements OnInit {
     }
     return error;
   }
-  getResponseCaptcha(captchaResponse: string) {
-    console.log(captchaResponse);
-    this.conex.captchaValidation(captchaResponse).subscribe(response => {
-      console.log(response);
-    });
+
+  handleReset() {
+    this.captchaElem.reloadCaptcha();
   }
   private validatePassword(control: AbstractControl) {
     const password = control.value;
@@ -67,5 +78,7 @@ export class PruebaPage implements OnInit {
     }
     return error;
   }
+
+
 
 }
