@@ -24,6 +24,7 @@ export class PruebaPage implements OnInit {
   }
   ngOnInit() {
     this.buildForm();
+    window['getResponseCaptcha'] = this.getResponseCaptcha.bind(this);
   }
   public register() {
     const user = this.formGroup.value;
@@ -48,6 +49,12 @@ export class PruebaPage implements OnInit {
       error = JSON.stringify(control.errors);
     }
     return error;
+  }
+  getResponseCaptcha(captchaResponse: string) {
+    console.log(captchaResponse);
+    this.conex.captchaValidation(captchaResponse).subscribe(response => {
+      console.log(response);
+    });
   }
   private validatePassword(control: AbstractControl) {
     const password = control.value;

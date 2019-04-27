@@ -23,7 +23,7 @@ export class AppComponent {
     {
       title: 'Prueba',
       url: '/prueba',
-      icon: ''
+      icon: 'home'
     }
   ];
 

@@ -13,6 +13,9 @@ export class ServicioPruebaService {
   mostrarTodos() {
     return this.http.get(this.url + '/dato');
   }
+  captchaValidation(response: string) {
+    return this.http.post('http://localhost:8080/captcha', {response: response});
+  }
   borrarId(idUser: number) {
     return this.http.delete(this.url + '/dato/' + idUser);
   }
